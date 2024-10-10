@@ -8,8 +8,8 @@ use Mix.Config
 # General application configuration
 config :explorer,
   ecto_repos: [Explorer.Repo],
-  coin: "KUB",
-  coingecko_coin_id: "bitkub-coin",
+  coin: "CPH",
+  coingecko_coin_id: "cypherium",
   token_functions_reader_max_retries: 3,
   allowed_evm_versions:
     System.get_env("ALLOWED_EVM_VERSIONS") ||
@@ -155,7 +155,7 @@ config :explorer, Explorer.Repo, migration_timestamps: [type: :utc_datetime_usec
 config :explorer, Explorer.Tracer,
   service: :explorer,
   adapter: SpandexDatadog.Adapter,
-  trace_key: :blockscout
+  trace_key: :cypheriumscan
 
 if System.get_env("METADATA_CONTRACT") && System.get_env("VALIDATORS_CONTRACT") do
   config :explorer, Explorer.Validator.MetadataRetriever,
@@ -185,8 +185,8 @@ case System.get_env("SUPPLY_MODULE") do
   "TokenBridge" ->
     config :explorer, supply: Explorer.Chain.Supply.TokenBridge
 
-  "rsk" ->
-    config :explorer, supply: Explorer.Chain.Supply.RSK
+  "cypherium" ->
+    config :explorer, supply: Explorer.Chain.Supply.Cypherium
 
   _ ->
     :ok
@@ -227,7 +227,7 @@ config :explorer, Explorer.Chain.Cache.Accounts,
 
 config :explorer, Explorer.Chain.Cache.PendingTransactions,
   enabled:
-    if(System.get_env("ETHEREUM_JSONRPC_VARIANT") == "besu",
+    if(System.get_env("CYSPHERIUM_JSONRPC_VARIANT") == "besu",
       do: false,
       else: true
     ),
