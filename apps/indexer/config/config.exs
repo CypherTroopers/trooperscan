@@ -39,7 +39,7 @@ config :indexer,
   last_block: System.get_env("LAST_BLOCK") || ""
 
 config :indexer, Indexer.Fetcher.PendingTransaction.Supervisor,
-  disabled?: System.get_env("ETHEREUM_JSONRPC_VARIANT") == "besu"
+  disabled?: System.get_env("CYSPHERIUM_JSONRPC_VARIANT") == "besu"
 
 # config :indexer, Indexer.Fetcher.ReplacedTransaction.Supervisor, disabled?: true
 if System.get_env("POS_STAKING_CONTRACT") do
@@ -51,7 +51,7 @@ config :indexer, Indexer.Supervisor, enabled: System.get_env("DISABLE_INDEXER") 
 config :indexer, Indexer.Tracer,
   service: :indexer,
   adapter: SpandexDatadog.Adapter,
-  trace_key: :blockscout
+  trace_key: :cypheriumscan
 
 config :logger, :indexer,
   # keep synced with `config/config.exs`
