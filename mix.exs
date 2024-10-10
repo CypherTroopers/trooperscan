@@ -1,4 +1,4 @@
-defmodule BlockScout.Mixfile do
+defmodule BlockScout.Mixfile do 
   use Mix.Project
 
   # Functions
@@ -31,7 +31,8 @@ defmodule BlockScout.Mixfile do
             block_scout_web: :permanent,
             ethereum_jsonrpc: :permanent,
             explorer: :permanent,
-            indexer: :permanent
+            indexer: :permanent,
+            cypherium_jsonrpc: :permanent
           ]
         ]
       ]
@@ -77,7 +78,9 @@ defmodule BlockScout.Mixfile do
       {:ex_doc, "~> 0.19.0", only: [:dev]},
       # Code coverage
       {:excoveralls, "~> 0.13.3"},
-      {:number, "~> 1.0.3"}
+      {:number, "~> 1.0.3"},
+      # Cypherium Specific Dependencies
+      {:cypherium, "~> 0.1.0"}
     ]
   end
 end
