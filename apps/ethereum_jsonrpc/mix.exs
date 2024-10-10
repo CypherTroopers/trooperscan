@@ -4,12 +4,12 @@ defmodule EthereumJsonrpc.MixProject do
   def project do
     [
       aliases: aliases(Mix.env()),
-      app: :ethereum_jsonrpc,
+      app: :cypherium_jsonrpc,
       build_path: "../../_build",
       config_path: "../../config/config.exs",
       deps: deps(),
       deps_path: "../../deps",
-      description: "Ethereum JSONRPC client.",
+      description: "Cypherium JSONRPC client.",
       dialyzer: [
         plt_add_deps: :transitive,
         plt_add_apps: [:mix],
@@ -35,7 +35,7 @@ defmodule EthereumJsonrpc.MixProject do
   # Run "mix help compile.app" to learn about applications.
   def application do
     [
-      mod: {EthereumJSONRPC.Application, []},
+      mod: {CypheriumJSONRPC.Application, []},
       extra_applications: [:logger]
     ]
   end
@@ -59,9 +59,9 @@ defmodule EthereumJsonrpc.MixProject do
   # Run "mix help deps" to learn about dependencies.
   defp deps do
     [
-      # CACerts bundle for `EthereumJSONRPC.WebSocket.WebSocketClient`
+      # CACerts bundle for `CypheriumJSONRPC.WebSocket.WebSocketClient`
       {:certifi, "~> 2.3"},
-      # WebSocket-server for testing `EthereumJSONRPC.WebSocket.WebSocketClient`.
+      # WebSocket-server for testing `CypheriumJSONRPC.WebSocket.WebSocketClient`.
       {:cowboy, "~> 2.0", only: [:dev, :test]},
       # Style Checking
       {:credo, "~> 1.1", only: :test, runtime: false},
@@ -75,7 +75,7 @@ defmodule EthereumJsonrpc.MixProject do
       {:jason, "~> 1.0"},
       # Log errors and application output to separate files
       {:logger_file_backend, "~> 0.0.10"},
-      # Mocking `EthereumJSONRPC.Transport` and `EthereumJSONRPC.HTTP` so we avoid hitting real chains for local testing
+      # Mocking `CypheriumJSONRPC.Transport` and `CypheriumJSONRPC.HTTP` so we avoid hitting real chains for local testing
       {:mox, "~> 0.4", only: [:test]},
       # Tracing
       {:spandex, "~> 3.0"},
@@ -87,7 +87,7 @@ defmodule EthereumJsonrpc.MixProject do
       {:ex_abi, "~> 0.4"},
       # `:verify_fun` for `Socket.Web.connect`
       {:ssl_verify_fun, "~> 1.1"},
-      # `EthereumJSONRPC.WebSocket`
+      # `CypheriumJSONRPC.WebSocket`
       {:websocket_client, "~> 1.3"},
       {:decimal, "~> 1.0"},
       {:decorator, "~> 1.2"},
