@@ -18,7 +18,7 @@ ENV PORT=80 \
 ADD mix.exs mix.lock ./
 ADD apps/block_scout_web/mix.exs ./apps/block_scout_web/
 ADD apps/explorer/mix.exs ./apps/explorer/
-ADD apps/ethereum_jsonrpc/mix.exs ./apps/ethereum_jsonrpc/
+ADD apps/cypherium_jsonrpc/mix.exs ./apps/cypherium_jsonrpc/
 ADD apps/indexer/mix.exs ./apps/indexer/
 
 RUN mix do deps.get, local.rebar --force, deps.compile
@@ -28,7 +28,7 @@ ADD . .
 ARG COIN
 RUN if [ "$COIN" != "" ]; then sed -i s/"POA"/"${COIN}"/g apps/block_scout_web/priv/gettext/en/LC_MESSAGES/default.po; fi
 
-# Run forderground build and phoenix digest
+# Run foreground build and phoenix digest
 RUN mix compile
 
 # Add blockscout npm deps
