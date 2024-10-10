@@ -77,8 +77,8 @@ defmodule Explorer.Mixfile do
       {:ecto, "~> 3.3", override: true},
       # Storing blockchain data and derived data in PostgreSQL.
       {:ecto_sql, "~> 3.3"},
-      # JSONRPC access to query smart contracts
-      {:ethereum_jsonrpc, in_umbrella: true},
+      # JSONRPC access to query smart contracts (Cypherium specific)
+      {:cypherium_jsonrpc, in_umbrella: true},
       # Data factory for testing
       {:ex_machina, "~> 2.3", only: [:test]},
       # Code coverage
