@@ -46,8 +46,8 @@ defmodule Indexer.MixProject do
     [
       # Optional dependency of `:spandex` for `Spandex.Decorators`
       {:decorator, "~> 1.2"},
-      # JSONRPC access to Parity for `Explorer.Indexer`
-      {:ethereum_jsonrpc, in_umbrella: true},
+      # JSONRPC access to Cypherium for `Explorer.Indexer`
+      {:cypherium_jsonrpc, in_umbrella: true},
       # RLP encoding
       {:ex_rlp, "~> 0.5.2"},
       # Code coverage
@@ -58,7 +58,7 @@ defmodule Indexer.MixProject do
       {:libsecp256k1, "~> 0.1.10"},
       # Log errors and application output to separate files
       {:logger_file_backend, "~> 0.0.10"},
-      # Mocking `EthereumJSONRPC.Transport`, so we avoid hitting real chains for local testing
+      # Mocking `CypheriumJSONRPC.Transport`, so we avoid hitting real chains for local testing
       {:mox, "~> 0.4", only: [:test]},
       # Tracing
       {:spandex, "~> 3.0"},
