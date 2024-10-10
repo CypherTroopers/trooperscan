@@ -16,12 +16,12 @@ config :block_scout_web,
   checksum_address_hashes: if(System.get_env("CHECKSUM_ADDRESS_HASHES", "true") == "false", do: false, else: true)
 
 config :block_scout_web, BlockScoutWeb.Chain,
-  network: System.get_env("NETWORK"),
+  network: "cypherium",
   subnetwork: System.get_env("SUBNETWORK"),
   network_icon: System.get_env("NETWORK_ICON"),
   logo: System.get_env("LOGO"),
   logo_footer: System.get_env("LOGO_FOOTER"),
-  logo_text: System.get_env("LOGO_TEXT"),
+  logo_text: "Cypherium Explorer",
   has_emission_funds: false,
   staking_enabled: not is_nil(System.get_env("POS_STAKING_CONTRACT")),
   # how often (in blocks) the list of pools should autorefresh in UI (zero turns off autorefreshing)
@@ -62,16 +62,16 @@ config :block_scout_web, BlockScoutWeb.Endpoint,
 config :block_scout_web, BlockScoutWeb.Tracer,
   service: :block_scout_web,
   adapter: SpandexDatadog.Adapter,
-  trace_key: :blockscout
+  trace_key: :cypheriumscan
 
 # Configures gettext
 config :block_scout_web, BlockScoutWeb.Gettext, locales: ~w(en), default_locale: "en"
 
 config :block_scout_web, BlockScoutWeb.SocialMedia,
-  twitter: "BitkubChain",
-  telegram: "bitkub_chain",
-  facebook: "BitkubChain",
-  instagram: "BitkubChain"
+  twitter: "CypheriumChain",
+  telegram: "cypherium_chain",
+  facebook: "CypheriumChain",
+  instagram: "CypheriumChain"
 
 # Configures History
 price_chart_config =
