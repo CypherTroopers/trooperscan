@@ -1,7 +1,7 @@
-SYSTEM = $(shell uname -s)
+SYSTEM = $(shell uname -s) 
 HOST = host.docker.internal
-DOCKER_IMAGE = bkc-explorer:v2
-BS_CONTAINER_NAME = bkc-explorer
+DOCKER_IMAGE = cypherium-explorer:v2
+BS_CONTAINER_NAME = cypherium-explorer
 PG_CONTAINER_NAME = postgres
 PG_CONTAINER_IMAGE = postgres:12.5
 THIS_FILE = $(lastword $(MAKEFILE_LIST))
@@ -12,7 +12,7 @@ endif
 
 DB_URL = postgresql://postgres:@$(HOST):5432/explorer?ssl=false
 BLOCKSCOUT_CONTAINER_PARAMS = -e 'MIX_ENV=prod' \
-															 -e 'DATABASE_URL=$(DB_URL)'
+                                                             -e 'DATABASE_URL=$(DB_URL)'
 ifeq ($(SYSTEM), Linux)
 	BLOCKSCOUT_CONTAINER_PARAMS += --network=host
 endif
@@ -32,13 +32,13 @@ ifdef ETHEREUM_JSONRPC_VARIANT
 	BLOCKSCOUT_CONTAINER_PARAMS += -e 'ETHEREUM_JSONRPC_VARIANT=$(ETHEREUM_JSONRPC_VARIANT)'
 endif
 ifdef ETHEREUM_JSONRPC_HTTP_URL
-	BLOCKSCOUT_CONTAINER_PARAMS += -e 'ETHEREUM_JSONRPC_HTTP_URL=$(ETHEREUM_JSONRPC_HTTP_URL)'
+	BLOCKSCOUT_CONTAINER_PARAMS += -e 'ETHEREUM_JSONRPC_HTTP_URL=https://pubnodes.cypherium.io/'
 endif
 ifdef ETHEREUM_JSONRPC_TRACE_URL
 	BLOCKSCOUT_CONTAINER_PARAMS += -e 'ETHEREUM_JSONRPC_TRACE_URL=$(ETHEREUM_JSONRPC_TRACE_URL)'
 endif
 ifdef ETHEREUM_JSONRPC_WS_URL
-	BLOCKSCOUT_CONTAINER_PARAMS += -e 'ETHEREUM_JSONRPC_WS_URL=$(ETHEREUM_JSONRPC_WS_URL)'
+	BLOCKSCOUT_CONTAINER_PARAMS += -e 'ETHEREUM_JSONRPC_WS_URL=ws://218.185.241.160:8546'
 endif
 ifdef ETHEREUM_JSONRPC_TRANSPORT
 	BLOCKSCOUT_CONTAINER_PARAMS += -e 'ETHEREUM_JSONRPC_TRANSPORT=$(ETHEREUM_JSONRPC_TRANSPORT)'
@@ -297,7 +297,7 @@ PG_EXIST := $(shell docker ps -a --filter name=${PG_CONTAINER_NAME} | grep ${PG_
 PG_STARTED := $(shell docker ps --filter name=${PG_CONTAINER_NAME} | grep ${PG_CONTAINER_NAME})
 postgres:
 ifdef PG_EXIST
-	@echo "==> Checking PostrgeSQL container"
+	@echo "==> Checking PostgreSQL container"
 ifdef PG_STARTED
 	@echo "==> PostgreSQL Already started"
 	@$(MAKE) -f $(THIS_FILE) migrate_only
@@ -331,4 +331,4 @@ run: start
 				migrate \
 				start \
 				postgres \
-				run 
+				run
